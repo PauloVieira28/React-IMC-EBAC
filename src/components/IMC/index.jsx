@@ -1,4 +1,4 @@
-import './index.css'
+import {form} from './index.module.css'
 import ResultFinish from '../ResultFinish';
 import { useState } from 'react';
 
@@ -29,7 +29,7 @@ const IMC = () => {
     return(
         <>
             <h1>IMC</h1>
-            <form className="form">
+            <form className={form}>
                 <label>Qual sua Altura?</label>
                 <input type="number" value={height} onChange={handleHeight}/>
 
@@ -40,7 +40,6 @@ const IMC = () => {
 
                 {release && (
                     <div>
-                        <p>O seu IMC é:</p>
                         <ResultFinish height={height} weight={weight} />   
                     </div>
                 )}
