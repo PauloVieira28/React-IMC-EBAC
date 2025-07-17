@@ -1,6 +1,6 @@
-import {form} from './index.module.css'
+import {form, imc} from './index.module.css'
 import ResultFinish from '../ResultFinish';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const IMC = () => {
 
@@ -26,9 +26,23 @@ const IMC = () => {
         setRealise(true)
 
     }
+
+    useEffect(() => {
+        if (release) {
+            const timer = setTimeout(() => {
+            setRelease(false)
+            setResultFinished('')
+            setMessage('')
+            setColorClassification('')
+            setResult('')
+        }, 5000)
+            return () => clearTimeout(timer) // limpa se o componente desmontar ou mudar
+        }
+    }, [release])
+
     return(
         <>
-            <h1>IMC</h1>
+            <h1 className={imc}>Descubra seu IMC</h1>
             <form className={form}>
                 <label>Qual sua Altura?</label>
                 <input type="number" value={height} onChange={handleHeight}/>

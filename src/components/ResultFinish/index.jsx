@@ -1,58 +1,76 @@
 import {red, moderate, light, normal, result} from './index.module.css'
+import { useState, useEffect } from 'react'
 
 const ResultFinish = ({weight, height}) => {
 
-    const imc = Number(weight) / (parseFloat(height) * parseFloat(height))
+    const [visible, setVisible] = useState(true)
+
+    const imc = Number(weight) / (parseFloat(height) * parseInt(height))
     const resultFinished = parseFloat(imc.toFixed(2))
 
     let message = ""
-    let coloClassification = ""
+    let colorClassification = ""
 
     if(resultFinished < 16){
         message = "Você está com magreza grave"
-        coloClassification = red
+        colorClassification = red
     }
 
     if(resultFinished > 16 && resultFinished < 16.99){
         message = "Você está com magreza moderada"
-        coloClassification = moderate
+        colorClassification = moderate
     }
 
     if(resultFinished > 17 && resultFinished < 18.4){
         message = "Você está com magreza leve"
-        coloClassification = light
+        colorClassification = light
     }
 
     if(resultFinished > 18.59 && resultFinished < 24.99){
         message = "Você está com o peso normal"
-        coloClassification = normal
+        colorClassification = normal
     }
 
     if(resultFinished > 25 && resultFinished < 29.99){
         message = "Você está com sobrepeso"
-        coloClassification = moderate
+        colorClassification = moderate
     }
 
     if(resultFinished > 30 && resultFinished < 34.99){
         message = "Você está com obesidade grau I"
-        coloClassification = light
+        colorClassification = light
     }
 
     if(resultFinished > 35 && resultFinished < 39.99){
         message = "Você está com obesidade grau II"
-        coloClassification = moderate
+        colorClassification = moderate
 
 
     }
     
     if(resultFinished > 40){
         message = "Você está com obesidade grau III (mórbida)"
-        coloClassification = red
+        colorClassification = red
     }
 
-    return <p className={`${coloClassification} ${result}`} >{`O seu IMC é: ${resultFinished} - ${message}`}</p>
+    useEffect(() => {
+        const timer = setTimeout(() => {
+        setVisible(false)
+        }, 5000)
+
+        return () => clearTimeout(timer)
+    }, [])
 
 
+    if(!visible){
+        return null
+    }
+
+    return (
+        <p className={`${colorClassification} ${result}`}>
+        {`O seu IMC é: ${resultFinished} - ${message}`}
+        </p>
+    )
 }
 
 export default ResultFinish;

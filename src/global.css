@@ -16,6 +16,13 @@ body {
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center;     /* Centraliza verticalmente */
-    background-color: #FFDEAD;
+    background-color: var(--primary-color);
     font-family: Arial, sans-serif;
+}
+
+:root {
+    --primary-color: #FFDEAD;
+    --text-color: white;
+    --botton-color: #DAA520;
+    --form-color: #f7f3d5;
 }

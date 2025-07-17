@@ -3,6 +3,7 @@
     display: block;
     color: #000;
     padding: 15px;
+    border-radius: 8px;
 }
 
 .red{
@@ -20,6 +21,6 @@
 }
 
 .normal{
-    color: white;
+    color: var(--text-color);
     background-color: green;
 }
